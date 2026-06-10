@@ -32,6 +32,23 @@ from backend.api.routes.user_analytics import (
 app.include_router(user_router)
 
 app.include_router(features_router)
+
+from backend.api.routes.segments import (
+    router as segments_router
+)
+
+app.include_router(
+    segments_router
+)
+
+from backend.api.routes.recommendations import (
+    router as recommendations_router
+)
+
+app.include_router(
+    recommendations_router
+)
+
 @app.get("/")
 def home():
     return {
