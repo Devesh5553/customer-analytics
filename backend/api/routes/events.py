@@ -9,7 +9,7 @@ async def create_event(event: CustomerEvent):
 
     event_dict = event.dict()
 
-    await db.user_events.insert_one(event_dict)
+    await db.events.insert_one(event_dict)
 
     return {
         "message": "Event stored successfully"

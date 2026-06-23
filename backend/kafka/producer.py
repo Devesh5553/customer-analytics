@@ -10,6 +10,17 @@ producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
+PRODUCTS = [
+    ("MacBook Pro", "electronics"),
+    ("iPhone 17", "electronics"),
+    ("PS5", "gaming"),
+    ("RTX 5080", "gaming"),
+    ("Boat Earbuds", "budget"),
+    ("Logitech Mouse", "budget")
+]
+
+
+
 EVENT_TYPES = [
     "view_product",
     "add_to_cart",
@@ -18,9 +29,12 @@ EVENT_TYPES = [
 ]
 
 while True:
+    product, category = random.choice(PRODUCTS)
     event = {
         "user_id": random.randint(1, 1000),
         "event_type": random.choice(EVENT_TYPES),
+        "product": product,
+        "category": category, 
         "product_id": random.randint(100, 999),
         "price": round(random.uniform(100, 50000), 2),
         "timestamp": datetime.utcnow().isoformat()
